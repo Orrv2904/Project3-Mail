@@ -54,6 +54,7 @@ function load_mailbox(mailbox) {
 
         newEmail.style.cursor = 'pointer';
         newEmail.addEventListener('click', () => {
+          view_email(singleEmails.id);
         });
 
         newEmail.addEventListener('click', function () {
@@ -113,6 +114,8 @@ function send_email(e) {
       });
 
     });
+};
 
-
-}
+function view_email(id) {
+  console.log(id)
+};
