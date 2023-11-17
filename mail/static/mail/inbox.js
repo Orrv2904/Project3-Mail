@@ -124,6 +124,13 @@ function view_email(id) {
       // Print email
       console.log(email);
 
-      // ... do something else with email ...
+      document.querySelector('#emails-view').style.display = 'none';
+      document.querySelector('#compose-view').style.display = 'none';
+      document.querySelector('#email-detail').style.display = 'block';
+
+      document.querySelector('#email-detail').innerHTML = 
+      `
+      da
+      `
     });
 };
