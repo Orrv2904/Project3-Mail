@@ -39,7 +39,14 @@ function load_mailbox(mailbox) {
     .then(response => response.json())
     .then(emails => {
       console.log(emails);
-
+      emails.forEach(singleEmails => {
+        const newEmail = document.createElement('div');
+        newEmail.innerHTML = 'This is the content of the div.';
+        newEmail.addEventListener('click', function () {
+          console.log('This newEmail has been clicked!')
+        });
+        document.querySelector('#emails-view').append(newEmail);
+      });
     });
 }
 
