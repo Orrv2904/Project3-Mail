@@ -40,8 +40,22 @@ function load_mailbox(mailbox) {
     .then(emails => {
       console.log(emails);
       emails.forEach(singleEmails => {
+        console.log(singleEmails)
         const newEmail = document.createElement('div');
-        newEmail.innerHTML = 'This is the content of the div.';
+        newEmail.classList.add('card', 'mb-3', 'border-primary'); // Add Bootstrap classes
+
+        newEmail.innerHTML = `
+  <div class="card-body">
+    <h5 class="card-title">Sender: ${singleEmails.sender}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Subject: ${singleEmails.subject}</h6>
+    <p class="card-text">${singleEmails.timestamp}</p>
+  </div>
+`;
+
+        newEmail.style.cursor = 'pointer';
+        newEmail.addEventListener('click', () => {
+        });
+
         newEmail.addEventListener('click', function () {
           console.log('This newEmail has been clicked!')
         });
