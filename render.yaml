@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: mail
+    buildCommand: "./build.sh"
+    env: python
+    startCommand: "gunicorn project3.wsgi"
