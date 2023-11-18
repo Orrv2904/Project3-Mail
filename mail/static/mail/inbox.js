@@ -46,7 +46,7 @@ function load_mailbox(mailbox) {
         console.log(singleEmails)
         const newEmail = document.createElement('div');
         newEmail.classList.add('card', 'mb-3', 'border-primary');
-      
+
 
         newEmail.innerHTML = `
           <div class="card-body">
@@ -150,7 +150,8 @@ function view_email(id) {
             <p class="card-text">${email.body}</p>
           </div>
         </div>
-      </div>      
+      </div>     
+      <hr> 
       `;
 
       if (!email.read) {
@@ -161,5 +162,14 @@ function view_email(id) {
           })
         })
       }
+
+      const btn_ar = document.createElement('button');
+      btn_ar.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
+      btn_ar.innerHTML = email.archived ? "Unarchive" : "Archive";
+      btn_ar.addEventListener('click', function () {
+        console.log('This btn_ar has been clicked!')
+      });
+
+      document.querySelector('#email-detail').append(btn_ar);
     });
 };
