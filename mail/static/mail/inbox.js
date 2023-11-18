@@ -45,15 +45,16 @@ function load_mailbox(mailbox) {
       emails.forEach(singleEmails => {
         console.log(singleEmails)
         const newEmail = document.createElement('div');
-        newEmail.classList.add('card', 'mb-3', 'border-primary'); // Add Bootstrap classes
+        newEmail.classList.add('card', 'mb-3', 'border-primary');
+      
 
         newEmail.innerHTML = `
-  <div class="card-body">
-    <h5 class="card-title">Sender: ${singleEmails.sender}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Subject: ${singleEmails.subject}</h6>
-    <p class="card-text">${singleEmails.timestamp}</p>
-  </div>
-`;
+          <div class="card-body">
+            <h5 class="card-title">Sender: ${singleEmails.sender}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Subject: ${singleEmails.subject}</h6>
+            <p class="card-text">${singleEmails.timestamp}</p>
+          </div>
+        `;
 
         newEmail.style.cursor = 'pointer';
         newEmail.addEventListener('click', () => {
@@ -130,6 +131,8 @@ function view_email(id) {
       document.querySelector('#compose-view').style.display = 'none';
       document.querySelector('#email-detail').style.display = 'block';
 
+      const statusText = email.read ? 'Read' : 'Delivered';
+
       document.querySelector('#email-detail').innerHTML =
         `
         <div class="card">
@@ -140,6 +143,7 @@ function view_email(id) {
             <li class="list-group-item"><strong>To:</strong> ${email.recipients}</li>
             <li class="list-group-item"><strong>Subject:</strong> ${email.subject}</li>
             <li class="list-group-item"><strong>Timestamp:</strong> ${email.timestamp}</li>
+            <li class="list-group-item"><strong>Status:</strong> ${statusText}</li>
           </ul>
           <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">Body</h6>
@@ -147,13 +151,13 @@ function view_email(id) {
           </div>
         </div>
       </div>      
-      `
+      `;
 
-      if(!email.read){
+      if (!email.read) {
         fetch(`/emails/${email.id}`, {
           method: 'PUT',
           body: JSON.stringify({
-              read: true
+            read: true
           })
         })
       }
