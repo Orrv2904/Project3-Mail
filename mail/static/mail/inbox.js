@@ -185,7 +185,7 @@ function view_email(id) {
       btn_rp.innerHTML = "Reply";
       btn_rp.className = "btn btn-info";
       btn_rp.addEventListener('click', function () {
-        console.log("Reply");
+        compose_email();
       });
       document.querySelector('#email-detail').append(btn_rp);
     })
