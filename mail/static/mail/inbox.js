@@ -20,7 +20,7 @@ function compose_email() {
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
   document.querySelector('#email-detail').style.display = 'none';
-  
+
 
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = '';
@@ -130,9 +130,23 @@ function view_email(id) {
       document.querySelector('#compose-view').style.display = 'none';
       document.querySelector('#email-detail').style.display = 'block';
 
-      document.querySelector('#email-detail').innerHTML = 
-      `
-      da
+      document.querySelector('#email-detail').innerHTML =
+        `
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Email Details</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>From:</strong> ${email.sender}</li>
+            <li class="list-group-item"><strong>To:</strong> ${email.recipients}</li>
+            <li class="list-group-item"><strong>Subject:</strong> ${email.subject}</li>
+            <li class="list-group-item"><strong>Timestamp:</strong> ${email.timestamp}</li>
+          </ul>
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Body</h6>
+            <p class="card-text">${email.body}</p>
+          </div>
+        </div>
+      </div>      
       `
     });
 };
