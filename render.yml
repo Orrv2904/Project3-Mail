@@ -1,0 +1,8 @@
+# render.yaml
+services:
+  - name: web
+    buildCommand: "python manage.py collectstatic --noinput"
+    buildDirectory: "/"
+    startCommand: "gunicorn project3.wsgi:mail"
+    envVars:
+      DJANGO_SETTINGS_MODULE: "project3.settings"
