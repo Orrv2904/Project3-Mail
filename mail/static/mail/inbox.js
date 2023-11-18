@@ -148,5 +148,14 @@ function view_email(id) {
         </div>
       </div>      
       `
+
+      if(!email.read){
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              read: true
+          })
+        })
+      }
     });
 };
