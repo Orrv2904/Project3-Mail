@@ -167,7 +167,12 @@ function view_email(id) {
       btn_ar.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
       btn_ar.innerHTML = email.archived ? "Unarchive" : "Archive";
       btn_ar.addEventListener('click', function () {
-        console.log('This btn_ar has been clicked!')
+        fetch(`/emails/${email.id}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+              archived: true
+          })
+        })
       });
 
       document.querySelector('#email-detail').append(btn_ar);
