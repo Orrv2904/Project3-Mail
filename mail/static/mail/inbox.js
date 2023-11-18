@@ -170,12 +170,26 @@ function view_email(id) {
         fetch(`/emails/${email.id}`, {
           method: 'PUT',
           body: JSON.stringify({
-              archived: !email.archived
+            archived: !email.archived
           })
         })
-        .then(() => {load_mailbox('archived')})
+          .then(() => load_mailbox('archived'))
+          .catch(error => {
+            console.error(error);
+          });
       });
 
       document.querySelector('#email-detail').append(btn_ar);
+
+      const btn_rp = document.createElement('button');
+      btn_rp.innerHTML = "Reply";
+      btn_rp.className = "btn btn-info";
+      btn_rp.addEventListener('click', function () {
+        console.log("Reply");
+      });
+      document.querySelector('#email-detail').append(btn_rp);
+    })
+    .catch(error => {
+      console.error(error);
     });
 };
