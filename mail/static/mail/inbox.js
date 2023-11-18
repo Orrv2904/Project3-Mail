@@ -121,7 +121,7 @@ function send_email(e) {
 };
 
 function view_email(id) {
-  console.log(id)
+  console.log(id);
   fetch(`/emails/${id}`)
     .then(response => response.json())
     .then(email => {
@@ -170,9 +170,10 @@ function view_email(id) {
         fetch(`/emails/${email.id}`, {
           method: 'PUT',
           body: JSON.stringify({
-              archived: true
+              archived: !email.archived
           })
         })
+        .then(() => {load_mailbox('archived')})
       });
 
       document.querySelector('#email-detail').append(btn_ar);
