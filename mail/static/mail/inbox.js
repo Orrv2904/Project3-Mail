@@ -186,6 +186,14 @@ function view_email(id) {
       btn_rp.className = "btn btn-info";
       btn_rp.addEventListener('click', function () {
         compose_email();
+
+        document.querySelector('#compose-recipients').value = email.sender;
+        let subject = email.subject;
+        if(subject.split('  ', 1)[0] != "Re: "){
+          subject = "Re: " + email.subject;
+        } 
+        document.querySelector('#compose-subject').value = subject;
+        document.querySelector('#compose-body').value = `on ${email.timestamp} ${email.sender} - wrote: ${email.body}`;
       });
       document.querySelector('#email-detail').append(btn_rp);
     })
